@@ -18,6 +18,7 @@ var awnser2 = document.createElement("button");
 var awnser3 = document.createElement("button");
 var awnser4 = document.createElement("button");
 
+
 awnserlist.appendChild(awnser1)
 awnserlist.appendChild(awnser2)
 awnserlist.appendChild(awnser3)
@@ -26,9 +27,14 @@ choicesArea.appendChild(awnserlist)
 
 
 var playerscore = 0;
-var time = 75;
+var time;
 var timerInterval;
 var scoreTextOut = "";
+
+var correctAudio = document.getElementById("correctSound");
+var IncorrectAudio = document.getElementById("incorrectSound");
+
+
 
 //Timer function
 function Timer()
@@ -51,6 +57,7 @@ startButton.addEventListener("click", function()
 {
     startScreen.textContent = "";
     StartQuestions()   
+    time = 75;
 })
 
 
@@ -97,51 +104,64 @@ submitButton.addEventListener("click", function()
 
 })
 
-
-var counter = 0;
+var counter;
 
 //Start question function
 function StartQuestions()
 {
+    counter = 0;
     Timer() ;
-    PropegateAwnsers(counter);
-
     questionScreen.setAttribute("class","");
+    
+    PropegateAwnsers(0);
+}
 
-    choicesArea.addEventListener("click", function(event)
+
+awnserlist.addEventListener("click", function(event)
+{
+    var givenAwnser = event.target.textContent;
+    var correctAwnser = questions[counter].correctAwnser;
+
+    if (counter == questions.length-1)
     {
-        var element = event.target;
-        if(element.textContent == questions[counter].correctAwnser)
+        if(givenAwnser == correctAwnser)
         {
-            if(counter < questions.length-1)
+            time += 15;
+            counter++;
+            correctAudio.play();
+            TriggerEndScreen();
+            clearInterval(timerInterval);
+        }
+        if(givenAwnser != correctAwnser)
+        {
+            time -= 15;
+            counter++;
+            IncorrectAudio.play();
+            TriggerEndScreen();
+            clearInterval(timerInterval);
+        }
+    }
+    else
+    {        
+        if(givenAwnser == correctAwnser)
             {
-                time +=15;
-                counter ++;
+                time += 15;
+                counter++;
+                correctAudio.play();
                 PropegateAwnsers(counter);
             }
-            else
+        if(givenAwnser != correctAwnser)
             {
-                TriggerEndScreen();
-                clearInterval(timerInterval);
+                time -= 15;
+                counter++;
+                IncorrectAudio.play();
+                PropegateAwnsers(counter);
             }
         }
-        if(element.textContent != questions[counter].correctAwnser)
-        {          
-            if(counter < questions.length-1)
-            {
-                time -=15;
-                counter ++;
-                PropegateAwnsers(counter)
-            }
-            else
-            {
-                TriggerEndScreen();
-                clearInterval(timerInterval);
-            }
-        }
-        })
-    
-}
+
+})
+
+
 
 //Add awnsers to screen function
 function PropegateAwnsers(i)

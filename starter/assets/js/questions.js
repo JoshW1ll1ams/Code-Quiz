@@ -6,12 +6,12 @@ var questions =[
     },
     {
     questionText: "When assigning a value to a variable how many equals signs do we use?",
-    awnsers: [3,2,1,4],
-    correctAwnser: 1
+    awnsers: ["three","two","four","one"],
+    correctAwnser: "one"
     },
     {
     questionText: "What keyword is used to create a function in javascript",
-    awnsers: ["def","func","execute","function"],
+    awnsers: ["function","func","execute","def"],
     correctAwnser: "function"
     },
     {
