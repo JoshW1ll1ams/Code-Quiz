@@ -8,8 +8,8 @@ When a correct answers is given time is added, incorrect answers deduct time.
 When done the user can enter there initials and add there score to local storage.
 
 # Screenshot of console output
-![Image of questions](/starter/assets/images/questions.PNG/?raw=true)
-![Image of highscores](/starter/assets/images/highscores.PNG/?raw=true)
+![Image of questions](/assets/images/questions.PNG/?raw=true)
+![Image of highscores](/assets/images/highscores.PNG/?raw=true)
 
 
 
