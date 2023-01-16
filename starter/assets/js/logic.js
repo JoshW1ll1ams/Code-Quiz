@@ -54,11 +54,47 @@ startButton.addEventListener("click", function()
 })
 
 
+currentlyStored = localStorage.getItem("CurrentlyStored","")
+
 //End screen submit button listener
 submitButton.addEventListener("click", function()
 {   
     scoreTextOut = document.getElementById('initials').value+ " "+playerscore
-    localStorage.setItem("scoresPlaceholder",scoreTextOut)
+    if(currentlyStored == 0)
+    {
+        console.log("1")
+        localStorage.setItem("CurrentlyStored",1)
+        localStorage.setItem("storedScores1",scoreTextOut)
+    }
+    if(currentlyStored == 1)
+    {
+        console.log("2")
+        localStorage.setItem("CurrentlyStored",2)
+        localStorage.setItem("storedScores2",scoreTextOut)
+    }
+    if(currentlyStored == 2)
+    {
+        console.log("3")
+        localStorage.setItem("CurrentlyStored",3)
+        localStorage.setItem("storedScores3",scoreTextOut)
+    }
+    if(currentlyStored == 3)
+    {
+        console.log("4")
+        localStorage.setItem("CurrentlyStored",4)
+        localStorage.setItem("storedScores4",scoreTextOut)
+    }
+    if(currentlyStored == 4)
+    {
+        console.log("5")
+        localStorage.setItem("CurrentlyStored",5)
+        localStorage.setItem("storedScores5",scoreTextOut)
+    }
+    if(currentlyStored == 5)
+    {
+        alert("HighScore storage full, max 5")
+    }
+
 })
 
 
