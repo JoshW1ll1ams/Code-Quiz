@@ -11,6 +11,7 @@ var choicesArea = document.querySelector("#choices")
 var finalScore = document.querySelector("#final-score")
 var submitButton = document.querySelector("#submit")
 
+
 var awnserlist = document.createElement("ol");
 var awnser1 = document.createElement("button");
 var awnser2 = document.createElement("button");
@@ -23,8 +24,11 @@ awnserlist.appendChild(awnser3)
 awnserlist.appendChild(awnser4)
 choicesArea.appendChild(awnserlist)
 
+
+var playerscore = 0;
 var time = 75;
 var timerInterval;
+var scoreTextOut = "";
 
 //Timer function
 function Timer()
@@ -52,8 +56,9 @@ startButton.addEventListener("click", function()
 
 //End screen submit button listener
 submitButton.addEventListener("click", function()
-{
-    
+{   
+    scoreTextOut = document.getElementById('initials').value+ " "+playerscore
+    localStorage.setItem("scoresPlaceholder",scoreTextOut)
 })
 
 
@@ -62,10 +67,10 @@ var counter = 0;
 //Start question function
 function StartQuestions()
 {
-    Timer() 
-    PropegateAwnsers(counter)
+    Timer() ;
+    PropegateAwnsers(counter);
 
-    questionScreen.setAttribute("class","")
+    questionScreen.setAttribute("class","");
 
     choicesArea.addEventListener("click", function(event)
     {
@@ -74,13 +79,13 @@ function StartQuestions()
         {
             if(counter < questions.length-1)
             {
-                time +=15
-                counter ++
-                PropegateAwnsers(counter)
+                time +=15;
+                counter ++;
+                PropegateAwnsers(counter);
             }
             else
             {
-                TriggerEndScreen()
+                TriggerEndScreen();
                 clearInterval(timerInterval);
             }
         }
@@ -88,13 +93,13 @@ function StartQuestions()
         {          
             if(counter < questions.length-1)
             {
-                time -=15
-                counter ++
+                time -=15;
+                counter ++;
                 PropegateAwnsers(counter)
             }
             else
             {
-                TriggerEndScreen()
+                TriggerEndScreen();
                 clearInterval(timerInterval);
             }
         }
@@ -102,7 +107,7 @@ function StartQuestions()
     
 }
 
-//Add aawnsers to screen function
+//Add awnsers to screen function
 function PropegateAwnsers(i)
 {
     questionTitle.textContent = questions[i].questionText;
@@ -115,7 +120,8 @@ function PropegateAwnsers(i)
 // Function to trigger end screen
 function TriggerEndScreen()
 {
-    questionScreen.setAttribute("class","hide")
-    endScreen.setAttribute("class","")
-    finalScore.textContent = "Your final score is " + time
+    questionScreen.setAttribute("class","hide");
+    endScreen.setAttribute("class","");
+    finalScore.textContent = "Your final score is " + time;
+    playerscore = time;
 }
