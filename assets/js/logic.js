@@ -67,7 +67,7 @@ currentlyStored = localStorage.getItem("CurrentlyStored","")
 submitButton.addEventListener("click", function()
 {   
     scoreTextOut = document.getElementById('initials').value+ " "+playerscore
-    if(currentlyStored == null)
+    if(currentlyStored == 0)
     {
         console.log("1")
         localStorage.setItem("CurrentlyStored",1)
